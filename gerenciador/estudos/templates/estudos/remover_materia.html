@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirmação de Remoção</title>
+</head>
+<body>
+    <h1>Tem certeza de que deseja remover a matéria "{{ materia.nome }}"?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Sim, remover</button>
+        <a href="{% url 'materia_lista' %}">Cancelar</a>
+    </form>
+</body>
+</html>

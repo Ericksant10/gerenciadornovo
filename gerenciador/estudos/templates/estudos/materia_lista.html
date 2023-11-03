@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Matérias e Tópicos</title>
+</head>
+<body>
+    <h1>Lista de Matérias</h1>
+    <ul>
+        {% for materia in materias %}
+            <li>{{ materia.nome }}
+                <a href="{% url 'remover_materia' materia.id %}">Remover</a>
+                <h2>Tópicos</h2>
+                <ul>
+                    {% for topico in materia.topico_set.all %}
+                        <li>{{ topico.nome }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Adicionar Matéria</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ materia_form.as_table }}
+        <button type="submit">Adicionar</button>
+    </form>
+
+    <h1>Lista de Tópicos</h1>
+    <ul>
+        {% for topico in topicos %}
+            <li>{{ topico.nome }}
+                <a href="{% url 'remover_topico' topico.id %}">Remover</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Adicionar Tópico</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ topico_form.as_table }}
+        <button type="submit">Adicionar</button>
+    </form>
+</body>
+</html>
